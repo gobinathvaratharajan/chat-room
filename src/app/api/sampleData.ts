@@ -14,12 +14,12 @@ export const sampleData = [
             {
                 id: 'a',
                 name: 'Bob',
-                photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+                photoURL: 'https://randomuser.me/api/portraits/men/1.jpg',
             },
             {
                 id: 'b',
                 name: 'Tom',
-                photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+                photoURL: 'https://randomuser.me/api/portraits/men/2.jpg',
             },
         ],
     },
@@ -38,12 +38,12 @@ export const sampleData = [
             {
                 id: 'a',
                 name: 'Bob',
-                photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+                photoURL: 'https://randomuser.me/api/portraits/men/3.jpg',
             },
             {
                 id: 'b',
                 name: 'Tom',
-                photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+                photoURL: 'https://randomuser.me/api/portraits/men/4.jpg',
             },
         ],
     },

@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import { createId } from '@paralleldrive/cuid2';
+import { createEvent, updateEvent } from '../eventSlice';
 
 export default function EventForm() {
-    const initialValues = {
+    let { id } = useParams();
+    const event = useAppSelector(state => state.events.events.find(e => e.id === id));
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const initialValues = event ?? {
         title: '',
         category: '',
         description: '',
@@ -14,7 +21,19 @@ export default function EventForm() {
     const [values, setValues] = useState(initialValues);
 
     function onSubmitHandler() {
-        console.log('clicked submit');
+        id = id ?? createId();
+        event
+            ? dispatch(updateEvent({ ...event, ...values }))
+            : dispatch(
+                  createEvent({
+                      ...values,
+                      id,
+                      hostedBy: 'Bob',
+                      attendees: [],
+                      hostPhotoURL: '',
+                  })
+              );
+        navigate(`/events/${id}`);
     }
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -24,7 +43,7 @@ export default function EventForm() {
 
     return (
         <Segment clearing>
-            <Header content={'Create Form'} />
+            <Header content={event ? 'Update Form' : 'Create Form'} />
             <Form onSubmit={onSubmitHandler}>
                 <Form.Field>
                     <input

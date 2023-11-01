@@ -15,6 +15,7 @@ export default function Navbar() {
                     Chat rooms
                 </MenuItem>
                 <MenuItem name="Home" as={NavLink} to="/events" />
+                <MenuItem name="Scratch" as={NavLink} to="/scratch" />
                 <MenuItem>
                     <Button
                         floated="right"

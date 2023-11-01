@@ -1,7 +1,12 @@
 import { Header, Image, Item, Segment, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { AppEvent } from '../../../app/types/event';
 
-export default function EventDetailHeader() {
+type Props = {
+    event: AppEvent;
+};
+
+export default function EventDetailHeader({ event }: Props) {
     const eventImageStyle = {
         filter: 'brightness(30%)',
     };
@@ -19,16 +24,16 @@ export default function EventDetailHeader() {
         <>
             <Segment.Group>
                 <Segment basic attached="top" style={{ padding: '0' }}>
-                    <Image src={`/categoryImages/drinks.jpg`} fluid style={eventImageStyle} />
+                    <Image src={`/categoryImages/${event.category}.jpg`} fluid style={eventImageStyle} />
 
                     <Segment basic style={eventImageTextStyle}>
                         <Item.Group>
                             <Item>
                                 <Item.Content>
-                                    <Header size="huge" content="Event Title" style={{ color: 'white' }} />
+                                    <Header size="huge" content={event.title} style={{ color: 'white' }} />
                                     <p>Event Date</p>
                                     <p>
-                                        Hosted by <strong>Bob</strong>
+                                        Hosted by <strong>{event.hostedBy}</strong>
                                     </p>
                                 </Item.Content>
                             </Item>
@@ -40,7 +45,7 @@ export default function EventDetailHeader() {
                     <Button>Cancel My Place</Button>
                     <Button color="teal">JOIN THIS EVENT</Button>
 
-                    <Button as={Link} to={`/manage/abc`} color="orange" floated="right">
+                    <Button as={Link} to={`/manage/${event.id}`} color="orange" floated="right">
                         Manage Event
                     </Button>
                 </Segment>
